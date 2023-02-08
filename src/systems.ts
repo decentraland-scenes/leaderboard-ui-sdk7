@@ -11,6 +11,21 @@ import {
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { createCube } from './factory'
 
+// Variable to reflect current state of menu visibility
+let _isMenuVisible: boolean = true
+
+
+export function isMenuVisible(){
+  //console.log("isMenuVisible()","ENTRY",_isMenuVisible)
+  return _isMenuVisible;
+}
+// Function to toggle the state of the menu
+export function toggleMenuVisibility(){
+  console.log("toggleMenuVisibility","ENTRY",_isMenuVisible)
+  _isMenuVisible = !_isMenuVisible
+}
+
+
 /**
  * BounceScaling is the flag-component with the time elapsed since creation.
  */
@@ -40,6 +55,11 @@ export function spawnerSystem() {
   for (const [entity] of clickedCubes) {
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       createCube(1 + Math.random() * 8, Math.random() * 8, 1 + Math.random() * 8, false)
+      
+      toggleMenuVisibility()
+
+      console.log("isMenuVisible",_isMenuVisible)
+
       BounceScaling.createOrReplace(entity)
     }
   }
