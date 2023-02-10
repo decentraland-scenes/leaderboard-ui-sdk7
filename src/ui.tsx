@@ -3,7 +3,7 @@ import {
   Transform
 
 } from '@dcl/sdk/ecs'
-import { Color4 } from '@dcl/sdk/math'
+import { Color3, Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { isMenuVisible, toggleMenuVisibility } from './systems'
 
@@ -60,7 +60,7 @@ const uiComponent = () => (
      onMouseDown={toggleMenuVisibility} 
    />
 
-     //copied from sdk docs
+    //copied from sdk docs
     <UiEntity>
       // Menu
       <UiEntity
@@ -92,11 +92,234 @@ const uiComponent = () => (
       />
     </UiEntity>
 
-
   </UiEntity>
   
   
 )
+
+
+const uiComponent2 = () => (
+    <UiEntity>
+    <UiEntity
+      uiTransform={{
+          width: 400,
+          height: 200,
+          //flexDirection:'row',
+          //justifyContent: 'flex-start',
+          //alignItems: 'flex-start',
+          display: 'flex',
+          margin: { top: '200px', left: '200px' }
+        }}
+        uiBackground={{ color: Color4.Blue() }}
+    > //table
+      <UiEntity>//start row
+        <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+
+              display: 'flex',
+              //margin: { top: '200px', left: '200px' }
+            }}
+            uiBackground={{ color: Color4.Red() }}
+          >
+            <Label
+              value='Player!'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+              uiBackground={{ color: Color4.Red() }}
+            />
+          </UiEntity>
+          <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+              display: 'flex',
+              //margin: { top: '200px', left: '200px' }
+            }}
+            uiBackground={{ color: Color4.Purple() }}
+          >
+            <Label
+              value='Score'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+              //color: Color4.Black() 
+              //uiBackground={{ color: Color4.Black() }}
+            />
+          
+        </UiEntity>
+      </UiEntity>//end label row
+
+      //START NEXT ROW
+      //START NEXT ROW //START NEXT ROW //START NEXT ROW
+      //START NEXT ROW
+
+      
+
+      //START NEXT ROW
+      //START NEXT ROW //START NEXT ROW //START NEXT ROW
+      //START NEXT ROW
+
+      <UiEntity>//start  row2
+        <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+
+              display: 'flex',
+              //margin: { top: '200px', left: '200px' }
+            }}
+            uiBackground={{ color: Color4.Teal() }}
+          >
+            <Label
+              value='SDK'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+              uiBackground={{ color: Color4.Red() }}
+            />
+          </UiEntity>
+          <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+              display: 'flex',
+              //margin: { top: '200px', left: '200px' }
+            }}
+            uiBackground={{avatarTexture: {userId: ""}}}
+          >
+            <Label
+              value='0'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+              //color: Color4.Black() 
+              //uiBackground={{ color: Color4.Black() }}
+            />
+          
+          
+        </UiEntity>
+      </UiEntity>//end   row2
+      
+      <UiEntity>//start  row1
+        <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+
+              display: 'flex',
+              //margin: { top: '200px', left: '200px' }
+            }}
+            uiBackground={{ color: Color4.Teal() }}
+          >
+            <Label
+              value='Will'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+              uiBackground={{ color: Color4.Red() }}
+            />
+          </UiEntity>
+          <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+              display: 'flex',
+              //margin: { top: '200px', left: '200px' }
+            }}
+            uiBackground={{ color: Color4.Gray() }}
+          >
+            <Label
+              value='2'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+              //color: Color4.Black() 
+              //uiBackground={{ color: Color4.Black() }}
+            />
+          
+        </UiEntity>
+      </UiEntity>//end   row1
+      
+      <UiEntity>
+      {generateText()}
+    </UiEntity>
+
+    </UiEntity>//end table
+  </UiEntity>//whole canvas
+)
+
+const uiComponent3 = () => (
+  
+    
+  <UiEntity>
+
+    <UiEntity
+        uiTransform={{
+          width: 400,
+          height: 200,
+          //flexDirection:'row',
+          //justifyContent: 'flex-start',
+          //alignItems: 'flex-start',
+          display: 'flex',
+          margin: { top: '200px', left: '200px' }
+        }}
+        uiBackground={{ color: Color4.Blue() }}
+      > //table
+      
+      //#region First bar with names of each column
+      <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+              display: 'flex',
+
+            }}
+          >
+            <Label
+              value='Player'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+            />
+          </UiEntity>
+          <UiEntity
+            uiTransform={{
+              width: 200,
+              height: 40,
+              display: 'flex',
+              //margin: { top: '200px', left: '200px' }
+            }}
+            uiBackground={{ color: Color4.Purple() }}
+          >
+            <Label
+              value='Score'
+              fontSize={24}
+              uiTransform={{
+                margin: { top: '10px',left: '50%' }
+              }}
+              //color: Color4.Black() 
+              //uiBackground={{ color: Color4.Black() }}
+            />
+          
+      </UiEntity>
+      //#endRegion
+    
+      {generateText()}
+    </UiEntity>
+  </UiEntity>
+)
+
+
 
 function getPlayerPosition() {
   const playerPosition = Transform.getOrNull(engine.PlayerEntity)
@@ -106,16 +329,95 @@ function getPlayerPosition() {
 }
 
 
-
+ 
 export function setupUi() {
- ReactEcsRenderer.setUiRenderer(uiComponent)
+ //ReactEcsRenderer.setUiRenderer(uiComponent)
+ ReactEcsRenderer.setUiRenderer(uiComponent3)
  //ReactEcsRenderer.setUiRenderer(uiComp2)
 }
 
 
-/////
 
 
 
-/////
 
+
+type MyFakeData = {name:string,score:number}
+
+export let fakeLeaderboardData: MyFakeData[] = [
+  {name: "Francesco",  score:100},
+  {name: "Will", score:200},
+  {name: "Anis", score:400},
+  {name: "Bence", score:300},
+  {name: "Michal", score:600}
+] 
+
+
+
+let randomizeFakeLeadboardData: MyFakeData[] = []
+
+export function randomizeData(){
+  randomizeFakeLeadboardData = fakeLeaderboardData.slice(0, Math.floor(Math.random()*fakeLeaderboardData.length) )
+  if(Math.random() > .5){
+      randomizeFakeLeadboardData.reverse()
+  }
+}
+
+
+
+ 
+
+function generateText(){ 
+  const arr = []
+  for (let i = 0; i < randomizeFakeLeadboardData.length; i++) {
+    const itm = randomizeFakeLeadboardData[i]
+    arr.push(<TextComponent name={itm.name} score={itm.score} rowNum={i}/> ) 
+
+    /*<TextComponent value={entity.toString()} key={entity} /> )  */
+  }
+
+  return arr
+}
+   
+//BLA metti immagini o altro che sia nella riga qua, ogni cosa e una cella 
+function TextComponent(props: { name: string; score: string | number; rowNum: number }) {
+  console.log("AAA.TextComponent", props)
+  const rowColor = props.rowNum %2== 0 ? Color4.Gray(): Color4.Red() 
+  return      <UiEntity>     
+      <UiEntity
+        uiTransform={{
+          width: 200,
+          height: 40,
+          display: 'flex',
+          //margin: { top: '200px', left: '200px' }
+        }}
+        uiBackground={{ color: rowColor }}
+      >
+        <Label
+          value= {props.name}
+          fontSize={24}
+          uiTransform={{
+            margin: { top: '10px',left: '50%' }
+          }}
+        />
+      </UiEntity>
+      <UiEntity
+        uiTransform={{
+          width: 200,
+          height: 40,
+          display: 'flex',
+          //margin: { top: '200px', left: '200px' }
+        }}
+        uiBackground={{ color: rowColor }}
+      >
+        <Label
+          value= {props.score.toString()}
+          fontSize={24}
+          uiTransform={{
+            margin: { top: '10px',left: '50%' }
+          }}
+
+        />
+      </UiEntity>
+  </UiEntity>
+}

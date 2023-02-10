@@ -10,10 +10,12 @@ import {
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { createCube } from './factory'
+import { randomizeData } from './ui';
 
-// Variable to reflect current state of menu visibility
+/**
+ *  Variable to reflect current state of menu visibility
+ * */
 let _isMenuVisible: boolean = true
-
 
 export function isMenuVisible(){
   //console.log("isMenuVisible()","ENTRY",_isMenuVisible)
@@ -57,6 +59,8 @@ export function spawnerSystem() {
       createCube(1 + Math.random() * 8, Math.random() * 8, 1 + Math.random() * 8, false)
       
       toggleMenuVisibility()
+
+      randomizeData()
 
       console.log("isMenuVisible",_isMenuVisible)
 
