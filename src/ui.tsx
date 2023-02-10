@@ -257,32 +257,65 @@ const uiComponent2 = () => (
   </UiEntity>//whole canvas
 )
 
+
+
+
+
+
+
+
+
+
+
+const uiComponent4 = () => (
+  <UiEntity
+        uiTransform={{
+          width: 400, 
+          height: 400,
+
+          //flexDirection:'row',
+          //justifyContent: 'flex-start',
+          //alignItems: 'flex-start',
+          display: 'flex',
+          margin: { top: '100px', left: '100px' }
+        }}
+        uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
+        >
+  </UiEntity>
+)
+
+
+
+
+
+
 const uiComponent3 = () => (
   
-    
-  <UiEntity>
+ 
 
+  <UiEntity>
     <UiEntity
         uiTransform={{
           width: 400,
-          height: 200,
+          height: 600,
           //flexDirection:'row',
           //justifyContent: 'flex-start',
           //alignItems: 'flex-start',
           display: 'flex',
           margin: { top: '200px', left: '200px' }
         }}
-        uiBackground={{ color: Color4.Blue() }}
-      > //table
-      
+        //uiBackground={{ color: Color4.Black() }}
+        uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
+    > 
+       
       <UiEntity
             uiTransform={{
               width: 200,
               height: 40,
               display: 'flex',
-
+              margin: { top: '45px', left: '0px' }
             }}
-          >
+      > 
             <Label
               value='Player'
               fontSize={24}
@@ -290,26 +323,23 @@ const uiComponent3 = () => (
                 margin: { top: '10px',left: '50%' }
               }}
             />
-          </UiEntity>
-          <UiEntity
-            uiTransform={{
-              width: 200,
-              height: 40,
-              display: 'flex',
-              //margin: { top: '200px', left: '200px' }
-            }}
-            uiBackground={{ color: Color4.Purple() }}
-          >
-            <Label
-              value='Score'
-              fontSize={24}
-              uiTransform={{
-                margin: { top: '10px',left: '50%' }
-              }}
-              //color: Color4.Black() 
-              //uiBackground={{ color: Color4.Black() }}
-            />
-          
+      </UiEntity>
+
+      <UiEntity
+        uiTransform={{ 
+          width: 200,
+          height: 40,
+          display: 'flex',
+          margin: { top: '45px', left: '0px' }
+        }}
+      >
+        <Label
+          value='Score'
+          fontSize={24}
+          uiTransform={{
+            margin: { top: '10px',left: '50%' }
+          }}
+        />
       </UiEntity>
 
     
@@ -334,7 +364,7 @@ export function setupUi() {
  ReactEcsRenderer.setUiRenderer(uiComponent3)
  //ReactEcsRenderer.setUiRenderer(uiComp2)
 }
-
+ 
 
 
 
