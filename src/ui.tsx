@@ -313,14 +313,16 @@ const uiComponent3 = () => (
               width: 200,
               height: 40,
               display: 'flex',
-              margin: { top: '45px', left: '0px' }
+              margin: { top: '45px', left: '0px' },
+              padding: { top: '5px', left: '5px', bottom: '5px' , right: '5px' }
             }}
+            uiBackground={{ color: Color4.Black() }}
       > 
             <Label
               value='Player'
               fontSize={24}
               uiTransform={{
-                margin: { top: '10px',left: '50%' }
+                margin: { top: '5px',left: '50%' }
               }}
             />
       </UiEntity>
