@@ -275,7 +275,6 @@ const uiComponent3 = () => (
         uiBackground={{ color: Color4.Blue() }}
       > //table
       
-      //#region First bar with names of each column
       <UiEntity
             uiTransform={{
               width: 200,
@@ -312,7 +311,7 @@ const uiComponent3 = () => (
             />
           
       </UiEntity>
-      //#endRegion
+
     
       {generateText()}
     </UiEntity>
