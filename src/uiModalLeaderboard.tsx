@@ -12,10 +12,10 @@ import { createRowCellImage, createRowCellText, CreateTableHeader, generateRows 
 
 
 
-const MODAL_WIDTH = 320
-const MODAL_HEIGHT = 400
-const TABLE_HEADER_FONT_SIZE = 14
-const TABLE_CELL_FONT_SIZE = 14
+const MODAL_WIDTH = 520
+const MODAL_HEIGHT = 600
+const TABLE_HEADER_FONT_SIZE = 16
+const TABLE_CELL_FONT_SIZE = 16
 const TABLE_ROW_HEIGHT = 30
 const TABLE_ROW_MARGIN:Partial<Position> ={ top: '5px', left: '0px' }
 const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowimage.png"}, textureMode: 'stretch'}
@@ -23,7 +23,7 @@ const TABLE_HEADER_UI_BG:UiBackgroundProps|undefined = undefined
 const TABLE_FONT_COLOR = Color4.White()
 const TABLE_HEADER_FONT_COLOR= Color4.White()
 const TABLE_HEADER_ROW_HEIGHT = 30
-const MODAL_BORDER_THICKNESS = 50
+const MODAL_BORDER_THICKNESS = 100
 const TABLE_WIDTH = MODAL_WIDTH - (MODAL_BORDER_THICKNESS*2)
 const TABLE_POSITION_TOP = 0
 
@@ -86,7 +86,7 @@ export function generateSampleData(){
 generateSampleData()
 
 
-export function createHudLeaderboardTable(){
+export function createModalLeaderboardTable(){
   const table = leaderboardTable
   return <UiEntity
     
@@ -96,7 +96,7 @@ export function createHudLeaderboardTable(){
           width: MODAL_WIDTH,
           height: MODAL_HEIGHT,
           display: 'flex',
-          position: { top: '400px', left: '10px' } , 
+          position: { top: '200px', left: '300px' } , 
           //alignSelf: 'center',
           flexDirection:'column',
           flexWrap:'wrap',

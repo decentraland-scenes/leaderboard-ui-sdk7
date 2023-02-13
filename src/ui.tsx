@@ -9,12 +9,14 @@ import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity,TextAlignType,Posit
 import { isMenuVisible, toggleMenuVisibility } from './systems'
 import { getFakeDataSample } from './fakeData'
 import { createHudLeaderboardTable } from './uiHudLeaderboard'
+import { createModalLeaderboardTable } from './uiModalLeaderboard'
 
 
 
 const uiComponent3 = () => (
   <UiEntity>
-    {createHudLeaderboardTable()}
+    <UiEntity>{createHudLeaderboardTable()}</UiEntity>
+    <UiEntity>{createModalLeaderboardTable()}</UiEntity>
     
   </UiEntity>
 )
