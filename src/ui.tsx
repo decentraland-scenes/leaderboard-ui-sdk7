@@ -8,7 +8,7 @@ import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/re
 import { isMenuVisible, toggleMenuVisibility } from './systems'
 
 
-
+/*
 const uiComponent = () => (
   <UiEntity
     uiTransform={{
@@ -95,7 +95,7 @@ const uiComponent = () => (
   </UiEntity>
   
   
-)
+)*/
 
 
 const uiComponent2 = () => (
@@ -287,20 +287,16 @@ const uiComponent4 = () => (
 
 
 
-
+export function setupUi() {
+  ReactEcsRenderer.setUiRenderer(uiComponent3)
+}
 
 const uiComponent3 = () => (
-  
- 
-
   <UiEntity>
     <UiEntity
         uiTransform={{
           width: 400,
           height: 600,
-          //flexDirection:'row',
-          //justifyContent: 'flex-start',
-          //alignItems: 'flex-start',
           display: 'flex',
           margin: { top: '200px', left: '200px' }
         }}
@@ -308,7 +304,7 @@ const uiComponent3 = () => (
         uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
     > 
        
-      <UiEntity
+      <UiEntity //Player Text
             uiTransform={{
               width: 200,
               height: 40,
@@ -327,7 +323,7 @@ const uiComponent3 = () => (
             />
       </UiEntity>
 
-      <UiEntity
+      <UiEntity //Score Text
         uiTransform={{ 
           width: 200,
           height: 40,
@@ -350,22 +346,20 @@ const uiComponent3 = () => (
   </UiEntity>
 )
 
+function generateText(){ 
+  const arr = []
+  for (let i = 0; i < randomizeFakeLeadboardData.length; i++) {
+    const itm = randomizeFakeLeadboardData[i]
+    arr.push(<TextComponent name={itm.name} score={itm.score} rowNum={i}/> ) 
+  }
 
-
-function getPlayerPosition() {
-  const playerPosition = Transform.getOrNull(engine.PlayerEntity)
-  if (!playerPosition) return ' no data yet'
-  const { x, y, z } = playerPosition.position
-  return `{X: ${x.toFixed(2)}, Y: ${y.toFixed(2)}, z: ${z.toFixed(2)} }`
+  return arr
 }
+
 
 
  
-export function setupUi() {
- //ReactEcsRenderer.setUiRenderer(uiComponent)
- ReactEcsRenderer.setUiRenderer(uiComponent3)
- //ReactEcsRenderer.setUiRenderer(uiComp2)
-}
+
  
 
 
@@ -384,7 +378,6 @@ export let fakeLeaderboardData: MyFakeData[] = [
 ] 
 
 
-
 let randomizeFakeLeadboardData: MyFakeData[] = []
 
 export function randomizeData(){
@@ -397,25 +390,14 @@ export function randomizeData(){
 
 
  
-
-function generateText(){ 
-  const arr = []
-  for (let i = 0; i < randomizeFakeLeadboardData.length; i++) {
-    const itm = randomizeFakeLeadboardData[i]
-    arr.push(<TextComponent name={itm.name} score={itm.score} rowNum={i}/> ) 
-
-    /*<TextComponent value={entity.toString()} key={entity} /> )  */
-  }
-
-  return arr
-}
    
 //BLA metti immagini o altro che sia nella riga qua, ogni cosa e una cella 
 function TextComponent(props: { name: string; score: string | number; rowNum: number }) {
   console.log("AAA.TextComponent", props)
   const rowColor = props.rowNum %2== 0 ? Color4.Gray(): Color4.Red() 
+
   return      <UiEntity>     
-      <UiEntity
+      <UiEntity //Player-Name text
         uiTransform={{
           width: 200,
           height: 40,
@@ -432,7 +414,8 @@ function TextComponent(props: { name: string; score: string | number; rowNum: nu
           }}
         />
       </UiEntity>
-      <UiEntity
+
+      <UiEntity //Score in Number Text
         uiTransform={{
           width: 200,
           height: 40,
@@ -450,5 +433,6 @@ function TextComponent(props: { name: string; score: string | number; rowNum: nu
 
         />
       </UiEntity>
+
   </UiEntity>
 }
