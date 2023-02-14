@@ -64,13 +64,13 @@ export function generateSampleData(){
       fontColor:fontColor
     })
 
-    
+    let dio = Math.random() * 10
 
     row.cells.push( new TableCell('text',itm.rank.toFixed(0),{fontSize:TABLE_CELL_FONT_SIZE,width:TABLE_RANK_WIDTH,fontColor:fontColor}))
+    row.cells.push( new TableCell('image',itm.teamId === "blue" ? "images/krampus.png" : "images/santa.png",{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
+    row.cells.push( new TableCell('image',"images/anonymous-player.png",{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
     row.cells.push( new TableCell('text',itm.name,{textAlign:'middle-left',fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
-    row.cells.push( new TableCell('image',itm.teamId === "blue" ? "images/teamBlueDot.png" : "images/teamRedDot.png",{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
-    row.cells.push( new TableCell('text',itm.health.toFixed(1) + "/" + itm.healthMax,{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
-    row.cells.push( new TableCell('text',itm.score.toFixed(0),{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
+    row.cells.push( new TableCell('text',itm.score.toString(),{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
    
     
     adjustNonSetWidthsEvenDist(row.cells)
