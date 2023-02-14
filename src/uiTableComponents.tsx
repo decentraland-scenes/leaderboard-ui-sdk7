@@ -27,12 +27,14 @@ export function createRowCellImage(props: { row:TableRow,cell: TableCell,colNum:
   >
     <UiEntity 
       uiTransform={{
-        width: `10px`,
-        height: '10px',
+        width: props.cell.stylesheet?.width ? props.cell.stylesheet?.width : '20px' ,
+        height: props.cell.stylesheet?.height ? props.cell.stylesheet?.height : '20px' ,
         display: 'flex',
-        alignSelf:'center'
+        alignSelf:'center',
+        
         //alignSelf:'center'
         //margin: { top: '50%' }
+        
       }}
       uiBackground={{ texture: {src: props.cell.value}, textureMode: 'stretch'}}
     ></UiEntity>
