@@ -14,10 +14,11 @@ import { createRowCellImage, createRowCellText, CreateTableHeader, generateRows 
 
 const MODAL_WIDTH = 520
 const MODAL_HEIGHT = 600
-const TABLE_HEADER_FONT_SIZE = 20
+const TABLE_HEADER_FONT_SIZE = 25 
 const TABLE_CELL_FONT_SIZE = 16
 const TABLE_ROW_HEIGHT = 30
 const TABLE_ROW_MARGIN:Partial<Position> ={ top: '5px', left: '0px' }
+const TABLE_HEADER_MARGIN:Partial<Position> ={ top: '-55px', left: '0px', bottom: '10px' }  
 const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowLineImage.png"}, textureMode: 'stretch'}
 const TABLE_HEADER_UI_BG:UiBackgroundProps|undefined = undefined
 const TABLE_FONT_COLOR = Color4.White()
@@ -30,7 +31,8 @@ const TABLE_POSITION_TOP = 0
 const TABLE_RANK_WIDTH = '5%'
 
 const header = new TableRow({
-  uiBackground:TABLE_HEADER_UI_BG
+  uiBackground:TABLE_HEADER_UI_BG,
+  margin: TABLE_HEADER_MARGIN
 });
 
 header.cells.push( new TableCell('text','Snowball Battle',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
@@ -39,7 +41,7 @@ header.cells.push( new TableCell('text','Snowball Battle',{fontSize:TABLE_HEADER
 adjustNonSetWidthsEvenDist(header.cells)
 //header.cells.push( new TableCell('text','Team'))
 
-const leaderboardTable = new Table( header  )
+const leaderboardTable = new Table( header )
 
 
 export function generateSampleData(){ 
