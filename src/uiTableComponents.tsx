@@ -84,9 +84,8 @@ export function generateRows(table:Table){
 }
 
 
-//BLA metti immagini o altro che sia nella riga qua, ogni cosa e una cella 
 export function CreateTableRow(props:{data: TableRow, rowNum:number}) {
-  //console.log("AAA.TextComponent", props)
+
   const rowColor = props.rowNum %2== 0 ? Color4.Gray(): Color4.Red() 
 
    const arr = []

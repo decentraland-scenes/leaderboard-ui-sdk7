@@ -12,20 +12,20 @@ import { createRowCellImage, createRowCellText, CreateTableHeader, generateRows 
 
 
 
-const MODAL_WIDTH = 520
-const MODAL_HEIGHT = 600
+const MODAL_WIDTH = 480
+const MODAL_HEIGHT = 376
 const TABLE_HEADER_FONT_SIZE = 25 
 const TABLE_CELL_FONT_SIZE = 16
-const TABLE_ROW_HEIGHT = 30
-const TABLE_ROW_MARGIN:Partial<Position> ={ top: '5px', left: '0px' }
-const TABLE_HEADER_MARGIN:Partial<Position> ={ top: '-55px', left: '0px', bottom: '10px' }  
+const TABLE_ROW_HEIGHT = 40   
+const TABLE_ROW_MARGIN:Partial<Position> ={ top: '5px', left: '0px' } 
+const TABLE_HEADER_MARGIN:Partial<Position> ={ top: '-50px', left: '0px', bottom: '10px' }  
 const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowLineImage.png"}, textureMode: 'stretch'}
 const TABLE_HEADER_UI_BG:UiBackgroundProps|undefined = undefined
 const TABLE_FONT_COLOR = Color4.White()
 const TABLE_HEADER_FONT_COLOR= Color4.White()
 const TABLE_HEADER_ROW_HEIGHT = 30
-const MODAL_BORDER_THICKNESS = 100
-const TABLE_WIDTH = MODAL_WIDTH - (MODAL_BORDER_THICKNESS*2)
+const MODAL_BORDER_THICKNESS = 50 
+const TABLE_WIDTH = 400//MODAL_WIDTH - (MODAL_BORDER_THICKNESS*2)
 const TABLE_POSITION_TOP = 0
 
 const TABLE_RANK_WIDTH = '5%'
@@ -55,8 +55,8 @@ export function generateSampleData(){
   for (let i = 0; i < randomizeFakeLeadboardData.length; i++) {
     const itm = randomizeFakeLeadboardData[i]
 
-    const fontColor = itm.connStatus === 'connected' ? TABLE_FONT_COLOR : Color4.Red()
-
+    const fontColor = itm.connStatus === 'connected' ? TABLE_FONT_COLOR : Color4.White()
+  
     const row = new TableRow({
       height:TABLE_ROW_HEIGHT,
       margin:TABLE_ROW_MARGIN,
@@ -94,7 +94,7 @@ export function createModalLeaderboardTable(){
           width: MODAL_WIDTH,
           height: MODAL_HEIGHT,
           display: 'flex',
-          position: { top: '200px', left: '300px' } , 
+          position: { top: '200px', left: '200px' } , 
           //alignSelf: 'center',
           flexDirection:'column',
           flexWrap:'wrap',
@@ -103,14 +103,14 @@ export function createModalLeaderboardTable(){
         }}
         //uiBackground={{ color: Color4.Black() }}
         uiBackground={{ texture: {src: "images/leadboard.png"}, textureMode: 'stretch'}}
-    > 
-
+    >  
+ 
       <UiEntity //start table
-          uiTransform={{
+          uiTransform={{    
             width: TABLE_WIDTH,
             height: '90%',
             display: 'flex',
-            position: { top: MODAL_BORDER_THICKNESS, left: MODAL_BORDER_THICKNESS } , 
+            position: { top: 75, left: 45 } , 
             //alignSelf: 'center',
             flexDirection:'column',
             flexWrap:'wrap'
