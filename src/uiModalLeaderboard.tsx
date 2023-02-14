@@ -14,11 +14,11 @@ import { createRowCellImage, createRowCellText, CreateTableHeader, generateRows 
 
 const MODAL_WIDTH = 520
 const MODAL_HEIGHT = 600
-const TABLE_HEADER_FONT_SIZE = 16
+const TABLE_HEADER_FONT_SIZE = 20
 const TABLE_CELL_FONT_SIZE = 16
 const TABLE_ROW_HEIGHT = 30
 const TABLE_ROW_MARGIN:Partial<Position> ={ top: '5px', left: '0px' }
-const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowimage.png"}, textureMode: 'stretch'}
+const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowLineImage.png"}, textureMode: 'stretch'}
 const TABLE_HEADER_UI_BG:UiBackgroundProps|undefined = undefined
 const TABLE_FONT_COLOR = Color4.White()
 const TABLE_HEADER_FONT_COLOR= Color4.White()
@@ -33,11 +33,7 @@ const header = new TableRow({
   uiBackground:TABLE_HEADER_UI_BG
 });
 
-header.cells.push( new TableCell('text','#',{fontSize:TABLE_HEADER_FONT_SIZE,width:TABLE_RANK_WIDTH,fontColor:TABLE_HEADER_FONT_COLOR}))
-header.cells.push( new TableCell('text','Players',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
-header.cells.push( new TableCell('text','Team',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
-header.cells.push( new TableCell('text','Health',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
-header.cells.push( new TableCell('text','Score',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
+header.cells.push( new TableCell('text','Snowball Battle',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
 
 
 adjustNonSetWidthsEvenDist(header.cells)
@@ -104,7 +100,7 @@ export function createModalLeaderboardTable(){
           
         }}
         //uiBackground={{ color: Color4.Black() }}
-        uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
+        uiBackground={{ texture: {src: "images/leadboard.png"}, textureMode: 'stretch'}}
     > 
 
       <UiEntity //start table
