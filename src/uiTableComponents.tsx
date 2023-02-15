@@ -1,42 +1,26 @@
-import {
-  engine,
-  Transform
-
-} from '@dcl/sdk/ecs'
-import { Color3, Color4 } from '@dcl/sdk/math'
+import { Color4 } from '@dcl/sdk/math'
 import { adjustNonSetWidthsEvenDist, Table,TableCell, TableRow } from './tableTypes'
-import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity,TextAlignType,PositionUnit,UiFontType,EntityPropTypes,  UiLabelProps } from '@dcl/sdk/react-ecs'
-import { isMenuVisible, toggleMenuVisibility } from './systems'
-import { getFakeDataSample } from './fakeData'
-import { createHudLeaderboardTable } from './uiHudLeaderboard'
+import ReactEcs, {Label, UiEntity } from '@dcl/sdk/react-ecs'
 
 
 
 export function createRowCellImage(props: { row:TableRow,cell: TableCell,colNum:number}) {
   return <UiEntity //cell wrapper
     uiTransform={{
-      width: `${(1/props.row.cells.length)*100}%`,
+      width: props.cell.stylesheet?.width ? props.cell.stylesheet?.width : `${(1/props.row.cells.length)*100}%` ,
       height: '100%',
       display: 'flex',
-      //alignItems:'center',
       justifyContent:'center'
-      //margin: { top: '200px', left: '200px' }
     }}
-    
-    //uiBackground={{ texture: {src: "images/scene-thumbnail.png"}, textureMode: 'stretch'}}
   >
     <UiEntity 
       uiTransform={{
-        width: props.cell.stylesheet?.width ? props.cell.stylesheet?.width : '20px' ,
-        height: props.cell.stylesheet?.height ? props.cell.stylesheet?.height : '20px' ,
+        width: props.cell.stylesheet?.innerWidth ? props.cell.stylesheet?.innerWidth : '20px' ,
+        height: props.cell.stylesheet?.innerHeight ? props.cell.stylesheet?.innerHeight : '20px' ,
         display: 'flex',
         alignSelf:'center',
-        
-        //alignSelf:'center'
-        //margin: { top: '50%' }
-        
       }}
-      uiBackground={{ texture: {src: props.cell.value}, textureMode: 'stretch'}}
+      uiBackground={props.cell.type == "avatar"? { avatarTexture: {userId: props.cell.value}, textureMode: 'stretch'}:{ texture: {src: props.cell.value}, textureMode: 'stretch'}}
     ></UiEntity>
     
   </UiEntity>
@@ -48,11 +32,7 @@ export function createRowCellText(props: { row:TableRow,cell: TableCell,colNum:n
       width: props.cell.stylesheet?.width ? props.cell.stylesheet?.width : `${(1/props.row.cells.length)*100}%` ,
       height: '100%',
       display: 'flex',
-      //alignItems:'center'
-      //margin: { top: '200px', left: '200px' }
     }}
-    //uiBackground={{ color: rowColor }}
-    
   >
     <Label
       value= {props.cell.value}
@@ -63,7 +43,6 @@ export function createRowCellText(props: { row:TableRow,cell: TableCell,colNum:n
       uiTransform={{
         width: `100%`,
         height: '100%',
-        //padding: { top: '20px',left: '0px' }
       }}
     />
   </UiEntity>
@@ -92,25 +71,24 @@ export function CreateTableRow(props:{data: TableRow, rowNum:number}) {
   for (let i = 0; i < props.data.cells.length; i++) {
     const itm = props.data.cells[i]
     switch(itm.type){
-      case 'image':
+      case 'image': 
+      case 'avatar':  
         arr.push(createRowCellImage( {row:props.data,cell:itm,colNum:i} )) 
         break;
 
       default:
         arr.push(createRowCellText( {row:props.data,cell:itm,colNum:i} )) 
     }
-    
   }
 
   return  <UiEntity
         uiTransform={{
           width: '100%',
-          height: props.data.stylesheet?.height ? props.data.stylesheet?.height : 20,//pick some reasonable height as default
+          height: props.data.stylesheet?.height ? props.data.stylesheet?.height : 20,
           display: 'flex',
           flexDirection:'row',
           flexWrap:'nowrap',
           margin: props.data.stylesheet?.margin ? props.data.stylesheet?.margin : { top: '0px', left: '0px' },
-          //padding: { top: '5px', left: '5px', bottom: '5px' , right: '5px' }
         }}
         uiBackground= { props.data.stylesheet?.uiBackground ? props.data.stylesheet?.uiBackground : undefined } 
       >          
@@ -121,7 +99,6 @@ export function CreateTableRow(props:{data: TableRow, rowNum:number}) {
 
 }
 
-//place holder should header need more stuff
 export function CreateTableHeader(props:{data: TableRow, rowNum:number}) {
   return CreateTableRow(props)
 } 

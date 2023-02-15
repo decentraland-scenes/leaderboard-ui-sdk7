@@ -1,23 +1,21 @@
 import { Color4 } from '@dcl/sdk/math'
-import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity,TextAlignType,PositionUnit,UiFontType,EntityPropTypes,  UiLabelProps, Position, UiBackgroundProps } from '@dcl/sdk/react-ecs'
+import { TextAlignType,PositionUnit,UiFontType, Position, UiBackgroundProps } from '@dcl/sdk/react-ecs'
 
 
 export type CellType ="text"|"image"|"avatar"
-/*type StyleSheet = {
-  textAlign?:TextAlignType
-}*/
+
 export type TableCellStyleSheet = //EntityPropTypes & UiLabelProps{
 {
   textAlign?:TextAlignType
   width?:PositionUnit
   height?:PositionUnit
+  innerWidth?:PositionUnit
+  innerHeight?:PositionUnit
   fontSize?:number
   font?:UiFontType
   fontColor?:Color4
   margin?:Partial<Position>
   uiBackground?:UiBackgroundProps
-
-  //value?:string
 }
 export class TableCell{
   type:CellType
@@ -80,7 +78,6 @@ export function adjustNonSetWidthsEvenDist(cells:TableCell[]){
       c.stylesheet.width = `${adjustNumVal}%`
     }
   }
-
 }
 
 

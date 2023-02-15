@@ -1,14 +1,8 @@
-import {
-  engine,
-  Transform
-
-} from '@dcl/sdk/ecs'
-import { Color3, Color4 } from '@dcl/sdk/math'
+import { Color4 } from '@dcl/sdk/math'
 import { adjustNonSetWidthsEvenDist, Table,TableCell, TableRow } from './tableTypes'
-import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity,TextAlignType,PositionUnit,UiFontType,EntityPropTypes,  UiLabelProps, Position, UiBackgroundProps } from '@dcl/sdk/react-ecs'
-import { isMenuVisible, toggleMenuVisibility } from './systems'
+import ReactEcs, { UiEntity, Position, UiBackgroundProps } from '@dcl/sdk/react-ecs'
 import { getFakeDataSample, randomizeData } from './fakeData'
-import { createRowCellImage, createRowCellText, CreateTableHeader, generateRows } from './uiTableComponents'
+import { CreateTableHeader, generateRows } from './uiTableComponents'
 
 
 
@@ -41,7 +35,6 @@ header.cells.push( new TableCell('text','Score',{fontSize:TABLE_HEADER_FONT_SIZE
 
 
 adjustNonSetWidthsEvenDist(header.cells)
-//header.cells.push( new TableCell('text','Team'))
 
 const leaderboardTable = new Table( header )
 
@@ -77,7 +70,6 @@ export function generateSampleData(){
     
     adjustNonSetWidthsEvenDist(row.cells)
 
-    //arr.push(<CreateTableRow data={row} rowNum={i} /> ) 
     leaderboardTable.rows.push(row)
   }
 
@@ -93,17 +85,13 @@ export function createHudLeaderboardTable(){
       >
     <UiEntity //parent / modal decoration
         uiTransform={{
-          width: MODAL_WIDTH,
+          width: 275,
           height: MODAL_HEIGHT,
           display: 'flex',
-          position: { top: '400px', left: '10px' } , 
-          //alignSelf: 'center',
+          position: { top: '400px', left: '20px' } , 
           flexDirection:'column',
           flexWrap:'wrap',
-          //alignContent:'center'
-          
         }}
-        //uiBackground={{ color: Color4.Black() }}
         uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
     > 
 
@@ -112,13 +100,10 @@ export function createHudLeaderboardTable(){
             width: TABLE_WIDTH,
             height: '90%',
             display: 'flex',
-            position: { top: MODAL_BORDER_THICKNESS, left: MODAL_BORDER_THICKNESS } , 
-            //alignSelf: 'center',
+            position: { top: 35, left: 32.5 } , 
             flexDirection:'column',
             flexWrap:'wrap'
           }}
-          //uiBackground={{ color: Color4.White() }}
-          //uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
       > 
         
         <CreateTableHeader data={table.header} rowNum={0}/>

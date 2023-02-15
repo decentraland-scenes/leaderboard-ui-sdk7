@@ -1,5 +1,3 @@
-
-
 export type MyFakeData = {
   name:string,score:number
   userId:string,
@@ -9,13 +7,13 @@ export type MyFakeData = {
   health:number,
   healthMax:number
 }
-
+ 
 export let fakeLeaderboardData: MyFakeData[] = [
-  {rank:1,name: "Francesco",  score:100,userId:"0x000",connStatus:"connected",teamId:"blue",health:(Math.random()*100),healthMax:100},
-  {rank:1,name: "Will", score:200,userId:"0x000",connStatus:"connected",teamId:"blue",health:(Math.random()*100),healthMax:100},
-  {rank:1,name: "Anis", score:400,userId:"0x000",connStatus:"disconnected",teamId:"red",health:(Math.random()*100),healthMax:100},
-  {rank:1,name: "Bence", score:300,userId:"0x000",connStatus:"connected",teamId:"red",health:(Math.random()*100),healthMax:100},
-  {rank:1,name: "Michal", score:600,userId:"0x000",connStatus:"disconnected",teamId:"red",health:(Math.random()*100),healthMax:100},
+  {rank:1,name: "Francesco",  score:100,userId:"0x2984cb8cda17d3d24a76cb95c2e23e5f22a40a40",connStatus:"connected",teamId:"blue",health:(Math.random()*100),healthMax:100},
+  {rank:1,name: "Will", score:200,userId:"",connStatus:"connected",teamId:"blue",health:(Math.random()*100),healthMax:100},
+  {rank:1,name: "Anis", score:400,userId:"0x2984cb8cda17d3d24a76cb95c2e23e5f22a40a40",connStatus:"disconnected",teamId:"red",health:(Math.random()*100),healthMax:100},
+  {rank:1,name: "Bence", score:300,userId:"",connStatus:"connected",teamId:"red",health:(Math.random()*100),healthMax:100},
+  {rank:1,name: "Michal", score:600,userId:"0x2984cb8cda17d3d24a76cb95c2e23e5f22a40a40",connStatus:"disconnected",teamId:"red",health:(Math.random()*100),healthMax:100},
 ] 
 
 

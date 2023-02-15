@@ -1,21 +1,15 @@
-import {
-  engine,
-  Transform
-
-} from '@dcl/sdk/ecs'
-import { Color3, Color4 } from '@dcl/sdk/math'
+import { Color4 } from '@dcl/sdk/math'
 import { adjustNonSetWidthsEvenDist, Table,TableCell, TableRow } from './tableTypes'
-import ReactEcs, { Button, Label, ReactEcsRenderer, UiEntity,TextAlignType,PositionUnit,UiFontType,EntityPropTypes,  UiLabelProps, Position, UiBackgroundProps } from '@dcl/sdk/react-ecs'
-import { isMenuVisible, toggleMenuVisibility } from './systems'
+import ReactEcs, { UiEntity, Position, UiBackgroundProps } from '@dcl/sdk/react-ecs'
 import { getFakeDataSample, randomizeData } from './fakeData'
-import { createRowCellImage, createRowCellText, CreateTableHeader, generateRows } from './uiTableComponents'
+import { CreateTableHeader, generateRows } from './uiTableComponents'
 
 
 
-const MODAL_WIDTH = 480
-const MODAL_HEIGHT = 376
-const TABLE_HEADER_FONT_SIZE = 25 
-const TABLE_CELL_FONT_SIZE = 16
+const MODAL_WIDTH = 480 
+const MODAL_HEIGHT = 376 
+const TABLE_HEADER_FONT_SIZE = 27 
+const TABLE_CELL_FONT_SIZE = 23
 const TABLE_ROW_HEIGHT = 40   
 const TABLE_ROW_MARGIN:Partial<Position> ={ top: '5px', left: '0px' } 
 const TABLE_HEADER_MARGIN:Partial<Position> ={ top: '-50px', left: '0px', bottom: '10px' }  
@@ -23,12 +17,11 @@ const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowLineImage.
 const TABLE_HEADER_UI_BG:UiBackgroundProps|undefined = undefined
 const TABLE_FONT_COLOR = Color4.White()
 const TABLE_HEADER_FONT_COLOR= Color4.White()
-const TABLE_HEADER_ROW_HEIGHT = 30
-const MODAL_BORDER_THICKNESS = 50 
-const TABLE_WIDTH = 400//MODAL_WIDTH - (MODAL_BORDER_THICKNESS*2)
-const TABLE_POSITION_TOP = 0
+const TABLE_WIDTH = 400
+const TABLE_RANK_WIDTH = '20%'
+const TABLE_ICON_WIDTH = '25px'
 
-const TABLE_RANK_WIDTH = '5%'
+
 
 const header = new TableRow({
   uiBackground:TABLE_HEADER_UI_BG,
@@ -39,12 +32,11 @@ header.cells.push( new TableCell('text','Snowball Battle',{fontSize:TABLE_HEADER
 
 
 adjustNonSetWidthsEvenDist(header.cells)
-//header.cells.push( new TableCell('text','Team'))
 
 const leaderboardTable = new Table( header )
 
 
-export function generateSampleData(){ 
+export function generateData(){ 
   leaderboardTable.rows = []
   randomizeData()
   
@@ -64,24 +56,26 @@ export function generateSampleData(){
       fontColor:fontColor
     })
 
-    let dio = Math.random() * 10
 
-    row.cells.push( new TableCell('text',itm.rank.toFixed(0),{fontSize:TABLE_CELL_FONT_SIZE,width:TABLE_RANK_WIDTH,fontColor:fontColor}))
-    row.cells.push( new TableCell('image',itm.teamId === "blue" ? "images/krampus.png" : "images/santa.png",{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
-    row.cells.push( new TableCell('image',"images/anonymous-player.png",{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
+    row.cells.push( new TableCell('text',itm.rank.toFixed(0),{fontSize:TABLE_CELL_FONT_SIZE,width:TABLE_RANK_WIDTH,fontColor:fontColor}))  
+    row.cells.push( new TableCell('image',itm.teamId === "blue" ? "images/krampus.png" : "images/santa.png", {innerWidth:TABLE_ICON_WIDTH, innerHeight:TABLE_ICON_WIDTH, width:TABLE_RANK_WIDTH} )) 
+    if(itm.userId != null && itm.userId != undefined && itm.userId != ""){
+      row.cells.push( new TableCell('avatar',itm.userId,{innerWidth:TABLE_ICON_WIDTH, innerHeight:TABLE_ICON_WIDTH, width:TABLE_RANK_WIDTH} ))
+    } else {
+      row.cells.push( new TableCell('image',"images/anonymous-player.png",{innerWidth:TABLE_ICON_WIDTH, innerHeight:TABLE_ICON_WIDTH, width:TABLE_RANK_WIDTH} ))
+    }
     row.cells.push( new TableCell('text',itm.name,{textAlign:'middle-left',fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
     row.cells.push( new TableCell('text',itm.score.toString(),{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
    
     
     adjustNonSetWidthsEvenDist(row.cells)
 
-    //arr.push(<CreateTableRow data={row} rowNum={i} /> ) 
     leaderboardTable.rows.push(row)
   }
 
 }
 
-generateSampleData()
+generateData()
 
 
 export function createModalLeaderboardTable(){
@@ -94,15 +88,11 @@ export function createModalLeaderboardTable(){
           width: MODAL_WIDTH,
           height: MODAL_HEIGHT,
           display: 'flex',
-          position: { top: '200px', left: '200px' } , 
-          //alignSelf: 'center',
+          position: { top: '200px', left: '900px' } , 
           flexDirection:'column',
           flexWrap:'wrap',
-          //alignContent:'center'
-          
         }}
-        //uiBackground={{ color: Color4.Black() }}
-        uiBackground={{ texture: {src: "images/leadboard.png"}, textureMode: 'stretch'}}
+        uiBackground={{texture: {src: "images/leadboard.png"}, textureMode: 'stretch' }}
     >  
  
       <UiEntity //start table
@@ -111,12 +101,9 @@ export function createModalLeaderboardTable(){
             height: '90%',
             display: 'flex',
             position: { top: 75, left: 45 } , 
-            //alignSelf: 'center',
             flexDirection:'column',
             flexWrap:'wrap'
           }}
-          //uiBackground={{ color: Color4.White() }}
-          //uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
       > 
         
         <CreateTableHeader data={table.header} rowNum={0}/>

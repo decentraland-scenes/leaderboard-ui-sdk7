@@ -12,6 +12,7 @@ import { Quaternion, Vector3 } from '@dcl/sdk/math'
 import { createCube } from './factory'
 import { randomizeData } from './fakeData';
 import { generateSampleData } from './uiHudLeaderboard';
+import { generateData } from './uiModalLeaderboard';
 
 
 /**
@@ -58,11 +59,12 @@ export function spawnerSystem() {
   const clickedCubes = engine.getEntitiesWith(PointerEvents)
   for (const [entity] of clickedCubes) {
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
-      //createCube(1 + Math.random() * 8, Math.random() * 8, 1 + Math.random() * 8, false) 
        
       toggleMenuVisibility()
 
       generateSampleData()
+
+      generateData()
 
       console.log("isMenuVisible",_isMenuVisible)
 
