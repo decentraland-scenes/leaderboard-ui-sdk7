@@ -88,7 +88,7 @@ export function createModalLeaderboardTable(){
           width: MODAL_WIDTH,
           height: MODAL_HEIGHT,
           display: 'flex',
-          position: { top: '200px', left: '900px' } , 
+          position: { top: '50%', left: '135%' } , 
           flexDirection:'column',
           flexWrap:'wrap',
         }}
