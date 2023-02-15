@@ -12,14 +12,13 @@ const TABLE_HEADER_FONT_SIZE = 14
 const TABLE_CELL_FONT_SIZE = 12
 const TABLE_ROW_HEIGHT = 30
 const TABLE_ROW_MARGIN:Partial<Position> ={ top: '5px', left: '-5px' }
-const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowimagev2.png"}, textureMode: 'stretch'}
+const TABLE_ROW_UI_BG:UiBackgroundProps = { texture: {src: "images/rowimage.png"}, textureMode: 'stretch', color: Color4.fromInts(255,255,255, 180)}
 const TABLE_HEADER_UI_BG:UiBackgroundProps|undefined = undefined
 const TABLE_FONT_COLOR = Color4.White()
 const TABLE_HEADER_FONT_COLOR= Color4.White()
-const TABLE_HEADER_ROW_HEIGHT = 30
 const MODAL_BORDER_THICKNESS = 50
 const TABLE_WIDTH = MODAL_WIDTH - (MODAL_BORDER_THICKNESS*2)
-const TABLE_POSITION_TOP = 0
+
 
 const TABLE_RANK_WIDTH = '10%'
 
@@ -55,7 +54,7 @@ export function generateSampleData(){
     const row = new TableRow({
       height:TABLE_ROW_HEIGHT,
       margin:TABLE_ROW_MARGIN,
-      uiBackground:TABLE_ROW_UI_BG,
+      uiBackground:TABLE_ROW_UI_BG, 
       fontColor:fontColor
     })
 
