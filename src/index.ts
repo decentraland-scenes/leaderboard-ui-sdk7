@@ -18,7 +18,7 @@ engine.addSystem(bounceScalingSystem)
 // Initial function executed when scene is evaluated and after systems are created
 executeTask(async function () {
   // Create my main cube and color it.
-  const cube = createCube(ButtonIds.SHUFFLE_DATA,8, 1, 8,'Press E to \nShuffle Players')
+  const cube = createCube(ButtonIds.SHUFFLE_DATA,8, 1, 8,'Press E to \nShuffle Data')
   const cube2 = createCube(ButtonIds.OPEN_MODAL,10, 1, 8,'Open Modal')
   Material.setPbrMaterial(cube, { albedoColor: Color4.create(1.0, 0.85, 0.42) })
 })
