@@ -3,10 +3,11 @@
 This demo scene present 2 different leaderboards made using sdk7. 
 Both of them where drawn by the ones present in the [Snowball Arena](https://github.com/decentraland-scenes/snowball-xmas-arena).
 
-**Modal Leader Board **
+#### **Modal Leader Board **
+
 ![MODAL](screenshot/b.png)
 
-**HUD Leader Board **
+#### **HUD Leader Board **
 ![HUD](screenshot/a.png)
 
 
