@@ -32,11 +32,19 @@ header.cells.push( new TableCell('text','Team',{fontSize:TABLE_HEADER_FONT_SIZE,
 header.cells.push( new TableCell('text','Health',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
 header.cells.push( new TableCell('text','Score',{fontSize:TABLE_HEADER_FONT_SIZE,fontColor:TABLE_HEADER_FONT_COLOR}))
 
+const noDataRow = new TableRow({
+  height:TABLE_ROW_HEIGHT,
+  margin:TABLE_ROW_MARGIN,
+  uiBackground:TABLE_ROW_UI_BG, 
+  fontColor:Color4.Gray()
+});
+
+noDataRow.cells.push( new TableCell('text','No Data To Display',{fontSize:TABLE_HEADER_FONT_SIZE,width:"100%",fontColor:Color4.Gray()}))
 
 adjustNonSetWidthsEvenDist(header.cells)
 
-const leaderboardTable = new Table( header )
-
+const leaderboardTable = new Table( 'hud-leaderboard',header )
+leaderboardTable.noDataRow = noDataRow
 
 export function generateHudLeaderboardData(){ 
   leaderboardTable.rows = []

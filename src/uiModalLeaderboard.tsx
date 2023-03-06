@@ -35,8 +35,18 @@ header.cells.push( new TableCell('text','Snowball Battle',{fontSize:TABLE_HEADER
 
 adjustNonSetWidthsEvenDist(header.cells)
 
-const leaderboardTable = new Table( header )
+const noDataRow = new TableRow({
+  height:TABLE_ROW_HEIGHT,
+  margin:TABLE_ROW_MARGIN,
+  uiBackground:TABLE_ROW_UI_BG, 
+  fontColor:Color4.Gray()
+});
 
+noDataRow.cells.push( new TableCell('text','No Data To Display',{fontSize:TABLE_HEADER_FONT_SIZE,width:"100%",fontColor:Color4.Gray()}))
+
+
+const leaderboardTable = new Table( 'modal-leaderboard',header )
+leaderboardTable.noDataRow = noDataRow
 
 export function generateModalLeaderboardData(){ 
   leaderboardTable.rows = []

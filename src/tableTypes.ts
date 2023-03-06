@@ -36,11 +36,15 @@ export class TableRow{
   }
 }
 export class Table{
+  id:string
   visible:boolean = true
   header:TableRow
+  noDataRow?:TableRow
+  
   rows:TableRow[] = []
 
-  constructor(header:TableRow){
+  constructor(id:string,header:TableRow){
+    this.id = id
     this.header = header
   }
 }

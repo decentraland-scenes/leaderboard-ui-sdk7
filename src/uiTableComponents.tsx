@@ -51,12 +51,19 @@ export function createRowCellText(props: { row:TableRow,cell: TableCell,colNum:n
 
 export function generateRows(table:Table){ 
   const arr = []
-  for (let i = 0; i < table.rows.length; i++) {
-    const row = table.rows[i]
-    
-    adjustNonSetWidthsEvenDist(row.cells)
+  if(table.rows.length === 0  && table.noDataRow ){
+    //console.log("showing no data rows for ",table.id)
+    adjustNonSetWidthsEvenDist(table.noDataRow.cells)
+    arr.push(<CreateTableRow data={table.noDataRow} rowNum={0} /> ) 
+  }else{
+    for (let i = 0; i < table.rows.length; i++) {
+      const row = table.rows[i]
+      
+      adjustNonSetWidthsEvenDist(row.cells)
 
-    arr.push(<CreateTableRow data={row} rowNum={i} /> ) 
+      arr.push(<CreateTableRow data={row} rowNum={i} /> ) 
+    }
+    
   }
 
   return arr
