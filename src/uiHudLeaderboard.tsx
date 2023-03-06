@@ -88,16 +88,16 @@ generateHudLeaderboardData()
 export function createHudLeaderboardTable(){
   const table = leaderboardTable
   return <UiEntity
-    
       >
     <UiEntity //parent / modal decoration
         uiTransform={{
           width: 275,
           height: MODAL_HEIGHT,
           display: 'flex',
-          position: { top: '400px', left: '20px' } , 
+          //position: { top: '400px', left: '20px' } , 
           flexDirection:'column',
           flexWrap:'wrap',
+          alignSelf:'flex-end'
         }}
         uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
     > 
