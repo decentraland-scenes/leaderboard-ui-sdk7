@@ -9,25 +9,11 @@ import { createModalLeaderboardTable, generateModalLeaderboardData } from './uiM
 randomizeData() //randomize
 generateHudLeaderboardData()
 generateModalLeaderboardData()
- 
-const uiComponent = () => (
-  <UiEntity
-    uiTransform={{ 
-      //width: '100%',
-      //height: '100%',
-      //maxWidth: '100%',
-      //maxHeight: '100%'
-      //alignItems:'center'
-      //justifyContent:'center'
-      
-    }}
-    //uiBackground={{ color: Color4.Gray()}} //so can see parent position for debugging
-  >
-    {createHudLeaderboardTable()}
-    {createModalLeaderboardTable()}
-    
-  </UiEntity>
-)
+
+const uiComponent = () => [
+  createHudLeaderboardTable(),
+  createModalLeaderboardTable()
+]
 
 export function setupUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
