@@ -94,7 +94,7 @@ export function createHudLeaderboardTable(){
           height: MODAL_HEIGHT,
           display: 'flex',
           positionType: 'absolute',
-          position: { top: '500px', left: '20px' } ,
+          position: { bottom: '50px', left: '10px' } ,
           flexDirection:'column',
           flexWrap:'wrap',
           alignSelf:'flex-end'
