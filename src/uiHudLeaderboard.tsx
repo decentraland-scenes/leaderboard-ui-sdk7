@@ -35,7 +35,7 @@ header.cells.push( new TableCell('text','Score',{fontSize:TABLE_HEADER_FONT_SIZE
 const noDataRow = new TableRow({
   height:TABLE_ROW_HEIGHT,
   margin:TABLE_ROW_MARGIN,
-  uiBackground:TABLE_ROW_UI_BG, 
+  uiBackground:TABLE_ROW_UI_BG,
   fontColor:Color4.Gray()
 });
 
@@ -46,10 +46,10 @@ adjustNonSetWidthsEvenDist(header.cells)
 const leaderboardTable = new Table( 'hud-leaderboard',header )
 leaderboardTable.noDataRow = noDataRow
 
-export function generateHudLeaderboardData(){ 
+export function generateHudLeaderboardData(){
   leaderboardTable.rows = []
-  
-  
+
+
   const randomizeFakeLeadboardData = getFakeDataSample()
 
   console.log("generateSampleData", randomizeFakeLeadboardData)
@@ -62,19 +62,19 @@ export function generateHudLeaderboardData(){
     const row = new TableRow({
       height:TABLE_ROW_HEIGHT,
       margin:TABLE_ROW_MARGIN,
-      uiBackground:TABLE_ROW_UI_BG, 
+      uiBackground:TABLE_ROW_UI_BG,
       fontColor:fontColor
     })
 
-    
+
 
     row.cells.push( new TableCell('text',itm.rank.toFixed(0),{fontSize:TABLE_CELL_FONT_SIZE,width:TABLE_RANK_WIDTH,fontColor:fontColor}))
     row.cells.push( new TableCell('text',itm.name,{textAlign:'middle-left',fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
     row.cells.push( new TableCell('image',itm.teamId === "blue" ? "images/teamBlueDot.png" : "images/teamRedDot.png",{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
     row.cells.push( new TableCell('text',itm.health.toFixed(1) + "/" + itm.healthMax,{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
     row.cells.push( new TableCell('text',itm.score.toFixed(0),{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
-   
-    
+
+
     adjustNonSetWidthsEvenDist(row.cells)
 
     leaderboardTable.rows.push(row)
@@ -87,39 +87,37 @@ generateHudLeaderboardData()
 
 export function createHudLeaderboardTable(){
   const table = leaderboardTable
-  return <UiEntity
-      >
+  return (
     <UiEntity //parent / modal decoration
         uiTransform={{
           width: 275,
           height: MODAL_HEIGHT,
           display: 'flex',
-          //position: { top: '400px', left: '20px' } , 
+          positionType: 'absolute',
+          position: { top: '500px', left: '20px' } ,
           flexDirection:'column',
           flexWrap:'wrap',
           alignSelf:'flex-end'
         }}
         uiBackground={{ texture: {src: "images/leaderboardbg.png"}, textureMode: 'stretch'}}
-    > 
+    >
 
       <UiEntity //start table
           uiTransform={{
             width: TABLE_WIDTH,
             height: '90%',
             display: 'flex',
-            position: { top: 35, left: 32.5 } , 
+            position: { top: 35, left: 32.5 } ,
             flexDirection:'column',
             flexWrap:'wrap'
           }}
-      > 
-        
+      >
+
         <CreateTableHeader data={table.header} rowNum={0}/>
 
         {generateRows(table)}
       </UiEntity>
-
-    </UiEntity>
-    </UiEntity>
+    </UiEntity>)
 }
 
 
