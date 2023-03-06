@@ -38,9 +38,9 @@ adjustNonSetWidthsEvenDist(header.cells)
 const leaderboardTable = new Table( header )
 
 
-export function generateSampleData(){ 
+export function generateHudLeaderboardData(){ 
   leaderboardTable.rows = []
-  randomizeData()
+  
   
   const randomizeFakeLeadboardData = getFakeDataSample()
 
@@ -74,7 +74,7 @@ export function generateSampleData(){
 
 }
 
-generateSampleData()
+generateHudLeaderboardData()
 
 
 export function createHudLeaderboardTable(){

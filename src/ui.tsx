@@ -7,10 +7,12 @@ import { createModalLeaderboardTable } from './uiModalLeaderboard'
 const uiComponent = () => (
   <UiEntity
     uiTransform={{ 
-      width: '100%',
-      height: '100%',
-      maxWidth: '100%',
-      maxHeight: '100%'
+      //width: '100%',
+      //height: '100%',
+      //maxWidth: '100%',
+      //maxHeight: '100%'
+      //alignItems:'center'
+      
     }}
   >
     <UiEntity>{createHudLeaderboardTable()}</UiEntity>

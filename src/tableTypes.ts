@@ -36,6 +36,7 @@ export class TableRow{
   }
 }
 export class Table{
+  visible:boolean = true
   header:TableRow
   rows:TableRow[] = []
 
@@ -71,7 +72,7 @@ export function adjustNonSetWidthsEvenDist(cells:TableCell[]){
   const adjustNum = cells.length - hasDef
   const adjustNumVal = (1/adjustNum)*100
 
-  console.log("adjustNonSetWidthsEvenDist","definedWidth",definedWidth,"hasDef",hasDef,"adjustNum",adjustNum,adjustNumVal)
+  //console.log("adjustNonSetWidthsEvenDist","definedWidth",definedWidth,"hasDef",hasDef,"adjustNum",adjustNum,adjustNumVal)
 
   for(const c of cells){
     if(c.stylesheet && !c.stylesheet?.width ){

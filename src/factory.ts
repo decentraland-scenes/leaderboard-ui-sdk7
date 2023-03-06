@@ -8,10 +8,13 @@ import {
   PointerEventType,
   InputAction
 } from '@dcl/sdk/ecs'
+import { EntityIdComponent } from './definitions'
 
 // Cube factory
-export function createCube(x: number, y: number, z: number, spawner = true): Entity {
+export function createCube(id:string,x: number, y: number, z: number, hoverText:string): Entity {
   const meshEntity = engine.addEntity()
+  EntityIdComponent.create(meshEntity,{id:id})
+
   Transform.create(meshEntity, { position: { x, y, z } })
 
   // set how the cube looks and collides
@@ -19,21 +22,21 @@ export function createCube(x: number, y: number, z: number, spawner = true): Ent
   MeshCollider.setBox(meshEntity)
 
   // if it is a spawner, then we set the pointer hover feedback
-  if (spawner) {
+  //if (spawner) {
     PointerEvents.create(meshEntity, {
       pointerEvents: [
         {
           eventType: PointerEventType.PET_DOWN,
           eventInfo: {
             button: InputAction.IA_PRIMARY,
-            hoverText: 'Press E to spawn',
+            hoverText: hoverText,
             maxDistance: 100,
             showFeedback: true
           }
         }
       ]
     })
-  }
+  //}
 
   return meshEntity
 }

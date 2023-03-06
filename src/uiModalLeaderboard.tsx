@@ -1,8 +1,10 @@
 import { Color4 } from '@dcl/sdk/math'
 import { adjustNonSetWidthsEvenDist, Table,TableCell, TableRow } from './tableTypes'
-import ReactEcs, { UiEntity, Position, UiBackgroundProps } from '@dcl/sdk/react-ecs'
+import ReactEcs, { UiEntity, Position, UiBackgroundProps, Button } from '@dcl/sdk/react-ecs'
 import { getFakeDataSample, randomizeData } from './fakeData'
 import { CreateTableHeader, generateRows } from './uiTableComponents'
+import { UiBackground } from '@dcl/sdk/ecs'
+import { generateHudLeaderboardData } from './uiHudLeaderboard'
 
 
 
@@ -36,9 +38,8 @@ adjustNonSetWidthsEvenDist(header.cells)
 const leaderboardTable = new Table( header )
 
 
-export function generateData(){ 
+export function generateModalLeaderboardData(){ 
   leaderboardTable.rows = []
-  randomizeData()
   
   const randomizeFakeLeadboardData = getFakeDataSample()
 
@@ -64,7 +65,7 @@ export function generateData(){
     } else {
       row.cells.push( new TableCell('image',"images/anonymous-player.png",{innerWidth:TABLE_ICON_WIDTH, innerHeight:TABLE_ICON_WIDTH, width:TABLE_RANK_WIDTH} ))
     }
-    row.cells.push( new TableCell('text',itm.name,{textAlign:'middle-left',fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
+    row.cells.push( new TableCell('text',itm.name + (itm.connStatus === 'connected' ? '' : '(*)'),{textAlign:'middle-left',fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
     row.cells.push( new TableCell('text',itm.score.toString(),{fontSize:TABLE_CELL_FONT_SIZE,fontColor:fontColor}))
    
     
@@ -75,22 +76,40 @@ export function generateData(){
 
 }
 
-generateData()
+generateModalLeaderboardData()
 
+export function toggleModalLeaderboard(val?:boolean):void{
+  console.log("clicked toggleModal",val,leaderboardTable.visible)
+  if(val !== undefined){
+    leaderboardTable.visible = val
+  }else{
+    leaderboardTable.visible = !leaderboardTable.visible
+  }
+}
 
 export function createModalLeaderboardTable(){
   const table = leaderboardTable
   return <UiEntity
-    
+    uiTransform={{ 
+      display:table.visible ? 'flex':'none',
+      
+        width: MODAL_WIDTH,
+        height: MODAL_HEIGHT,
+        position: { left: '50%' } , 
+        flexDirection:'row',
+        flexWrap:'wrap',
+        alignSelf:'center'
+    }}
       >
     <UiEntity //parent / modal decoration
         uiTransform={{
           width: MODAL_WIDTH,
           height: MODAL_HEIGHT,
           display: 'flex',
-          position: { top: '50%', left: '135%' } , 
+          //position: { left: '50%' } , 
           flexDirection:'column',
-          flexWrap:'wrap',
+          //flexWrap:'wrap',
+          //alignSelf:'center'
         }}
         uiBackground={{texture: {src: "images/leadboard.png"}, textureMode: 'stretch' }}
     >  
@@ -109,6 +128,45 @@ export function createModalLeaderboardTable(){
         <CreateTableHeader data={table.header} rowNum={0}/>
 
         {generateRows(table)}
+        
+       
+        
+
+      </UiEntity>
+
+      <UiEntity //start table
+        uiTransform={{
+          width: '100%',
+          height: '50px',
+          display: 'flex',
+          flexDirection:'row',
+          flexWrap:'wrap',
+          alignSelf:'center',
+          justifyContent:'center',
+          padding: { bottom:'30px' },
+        }}
+      >
+        <Button variant='secondary' value='Shuffle' onMouseDown={()=>{ randomizeData(); generateModalLeaderboardData(); generateHudLeaderboardData() }}
+            uiTransform={{
+              width: '100px',
+              height: '40px',
+              display: 'flex',
+              alignSelf:'center',
+              margin: { right:'20px' },
+            }}
+            font='sans-serif'
+            fontSize={20}
+            ></Button>
+        <Button variant='primary' value='Close' onMouseDown={()=>{toggleModalLeaderboard()}}
+          uiTransform={{
+            width: '100px',
+            height: '40px',
+            display: 'flex',
+            alignSelf:'center'
+          }}
+          font='sans-serif'
+          fontSize={20}
+          ></Button>
       </UiEntity>
 
     </UiEntity>

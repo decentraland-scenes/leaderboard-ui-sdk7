@@ -9,26 +9,12 @@ import {
   inputSystem
 } from '@dcl/sdk/ecs'
 import { Quaternion, Vector3 } from '@dcl/sdk/math'
+import { ButtonIds, EntityIdComponent } from './definitions';
 import { createCube } from './factory'
 import { randomizeData } from './fakeData';
-import { generateSampleData } from './uiHudLeaderboard';
-import { generateData } from './uiModalLeaderboard';
+import { generateHudLeaderboardData } from './uiHudLeaderboard';
+import { generateModalLeaderboardData, toggleModalLeaderboard } from './uiModalLeaderboard';
 
-
-/**
- *  Variable to reflect current state of menu visibility
- * */
-let _isMenuVisible: boolean = true
-
-export function isMenuVisible(){
-  //console.log("isMenuVisible()","ENTRY",_isMenuVisible)
-  return _isMenuVisible;
-}
-// Function to toggle the state of the menu
-export function toggleMenuVisibility(){
-  console.log("toggleMenuVisibility","ENTRY",_isMenuVisible)
-  _isMenuVisible = !_isMenuVisible
-}
 
 
 /**
@@ -59,15 +45,16 @@ export function spawnerSystem() {
   const clickedCubes = engine.getEntitiesWith(PointerEvents)
   for (const [entity] of clickedCubes) {
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
-       
-      toggleMenuVisibility()
-
-      generateSampleData()
-
-      generateData()
-
-      console.log("isMenuVisible",_isMenuVisible)
-
+      
+      const entId = EntityIdComponent.get( entity )
+      
+      if(entId.id === ButtonIds.OPEN_MODAL){
+        toggleModalLeaderboard(true)
+      }else{
+          randomizeData() //randomize
+          generateHudLeaderboardData()
+          generateModalLeaderboardData()
+      }
       BounceScaling.createOrReplace(entity)
     }
   }
