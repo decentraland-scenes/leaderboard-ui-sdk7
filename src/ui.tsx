@@ -23,8 +23,8 @@ const uiComponent = () => (
     }}
     //uiBackground={{ color: Color4.Gray()}} //so can see parent position for debugging
   >
-    <UiEntity>{createHudLeaderboardTable()}</UiEntity>
-    <UiEntity>{createModalLeaderboardTable()}</UiEntity>
+    {createHudLeaderboardTable()}
+    {createModalLeaderboardTable()}
     
   </UiEntity>
 )
